@@ -12,10 +12,15 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/assets/css/main.css", "~/assets/css/normalize.css"],
+  css: [
+    "~/assets/css/main.css",
+    "~/assets/css/normalize.css",
+    "~/assets/css/styles.scss",
+    "~/assets/css/variables.scss",
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["~/plugins/constants.js"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -29,6 +34,21 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/pwa
     "@nuxtjs/pwa",
+    [
+      "nuxt-fontawesome",
+      {
+        imports: [
+          {
+            set: "@fortawesome/free-solid-svg-icons",
+            icons: ["fas"],
+          },
+          {
+            set: "@fortawesome/free-brands-svg-icons",
+            icons: ["fab"],
+          },
+        ],
+      },
+    ],
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

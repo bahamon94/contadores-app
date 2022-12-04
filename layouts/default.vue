@@ -1,39 +1,54 @@
 <template>
   <div id="div-default">
+    <component :is="modalComponent" :input="inputObj"/>
     <HeaderApp/>
     <main>
-      <Nuxt />
+      <Nuxt/>
     </main>
-    <footer>
-      Footer
-    </footer>
+    <FooterApp/>
   </div>
 </template>
 
 <script>
 import HeaderApp from '~/components/HeaderApp'
+import FooterApp from "~/components/FooterApp";
+import ModalServices from "~/services/Modal.services";
 
 export default {
   name: 'default',
-  components: { HeaderApp }
+  components: {FooterApp, HeaderApp},
+  data() {
+    return {
+      modalComponent: null,
+      inputObj: {}
+    }
+  },
+  created() {
+    this.onListenModal()
+  },
+  methods: {
+    onListenModal() {
+      ModalServices.nvg$.subscribe(res => {
+        if (res) {
+          this.modalComponent = res.component
+          this.inputObj = res.inputObj
+        }
+      })
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-
-
 main {
   flex: 1;
   overflow-y: auto;
-}
-
-footer {
-  background-color: #3f51b5;
+  padding: 1rem;
 }
 
 #div-default {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 </style>

@@ -1,0 +1,1 @@
+export const QUANTITY_MAX_COUNTERS = 20;
