@@ -42,6 +42,7 @@
 
 <script>
 import {mapGetters, mapMutations} from "vuex";
+import {setLocalStorage} from "~/utils";
 
 
 export default {

@@ -44,7 +44,6 @@ export default {
           name: this.nameCounter,
           value: this.valueCounter
         })
-        setLocalStorage('counters', this.allCounters)
         modalServices.close()
       } else
         modalServices.Open(BaseAlert)

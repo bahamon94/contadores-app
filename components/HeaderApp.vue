@@ -28,7 +28,8 @@ export default {
 </script>
 <style scoped lang="scss">
 header {
-  background-color: #3f51b5;
+  background-color: var(--color-neutral);
+  box-shadow: 0 3px 5px 0 var(--color-neutral);
   display: flex;
   justify-content: space-around;
   align-items: center;
