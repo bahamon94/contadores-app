@@ -129,6 +129,18 @@ export default {
   }
 }
 
+.primary {
+  background-color: var(--color-primary);
+  color: var(--color-light) ;
+
+  &:hover {
+    background-color: var(--color-primary);
+    box-shadow: none;
+    color:  var(--color-normal);
+
+  }
+}
+
 .button-disable {
   pointer-events: none;
   color: var(--color-neutral)
