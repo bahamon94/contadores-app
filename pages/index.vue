@@ -1,6 +1,10 @@
 <template>
   <section>
-  <Counter v-for="a in allCounters" :key="a"/>
+  <Counter
+    v-for="counter in allCounters"
+    :key="counter.id"
+    :counter="counter"
+  />
   </section>
 </template>
 
@@ -9,12 +13,7 @@ import { mapGetters } from "vuex";
 
 export default {
   name: 'IndexPage',
-  computed: {
-    ...mapGetters('counter', ['getCounters']),
-    allCounters () {
-      return this.getCounters
-    }
-  }
+  computed: mapGetters({ allCounters: 'counter/getCounters' }),
 }
 </script>
 <style lang="scss">

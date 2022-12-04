@@ -1,6 +1,6 @@
 <template>
   <BaseModal>
-      <counter adding/>
+      <lazy-counter-create adding/>
   </BaseModal>
 </template>
 
