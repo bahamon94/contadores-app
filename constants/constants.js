@@ -8,3 +8,11 @@ export const OPTIONS_SORT_BY = [
   { value: "name", label: "Counter Name" },
   { value: "value", label: "Counter value" },
 ];
+
+export const ERRORS_LABEL = {
+  CANNOT_CREATE_COUNTER: "Cannot create counter",
+};
+
+export const TYPE_ALERTS = {
+  ERROR: "error",
+};

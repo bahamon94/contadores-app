@@ -27,7 +27,9 @@
 import {setLocalStorage} from "~/utils";
 import modalServices from "~/services/Modal.services";
 import BaseAlert from "~/components/shared/BaseAlert";
-import {mapActions} from "vuex";
+import {mapActions, mapMutations} from "vuex";
+import {ERRORS_LABEL, TYPE_ALERTS} from "~/constants";
+
 export default {
   name: "CounterCreate",
   components: {
@@ -41,7 +43,7 @@ export default {
     valueCounter: 0
   }),
   methods: {
-    setCounter() {
+    async setCounter() {
       if (this.$validRangeContador(this.valueCounter) && this.$validEmptyOrGreaterThan(this.nameCounter)) {
         this.createCounter({
           name: this.nameCounter,
@@ -49,13 +51,15 @@ export default {
         })
         modalServices.close()
       } else
-        modalServices.Open(BaseAlert)
+        this.setError({ type: TYPE_ALERTS.ERROR, label: ERRORS_LABEL.CANNOT_CREATE_COUNTER })
+        await modalServices.Open(BaseAlert)
     },
 
     cancelCreate() {
       modalServices.close()
     },
 
+    ...mapMutations({ setError: 'setError' }),
     ...mapActions({createCounter: 'counter/createCounter'}),
   }
 }

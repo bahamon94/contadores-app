@@ -33,6 +33,7 @@ export default {
   display: flex;
   justify-content: center;
   background-color: var(--color-overlay);
+  z-index: 100;
 }
 
 .modal {

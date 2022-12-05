@@ -1,24 +1,37 @@
 <template>
   <label>
     <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-    <div class="alert error">
-      <span class="alertClose">X</span>
-      <span class="alertText">Bla Bla Bla<br />Bla Bla<br />Bla
-		<br class="clear"/></span>
+    <div class="alert" :class="hasError.type">
+      <span @click="closeAlert" class="alertClose">X</span>
+      <span class="alertText">
+        {{ hasError.label }}
+      </span>
     </div>
   </label>
 
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+import modalServices from "~/services/Modal.services";
+
 export default {
-  name: "BaseAlerts"
+  name: "BaseAlerts",
+  computed: {
+    ...mapGetters({ hasError: "error" })
+  },
+  methods:{
+    closeAlert() {
+      modalServices.close()
+    }
+  }
+
 }
 </script>
 
 <style scoped>
 .alert {
-  position: relative;
+  position: absolute;
   right: 0;
   padding: 10px;
   margin: 10px;
