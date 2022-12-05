@@ -78,6 +78,13 @@ export default {
   margin-left: 1rem
 }
 
+@include media('sm') {
+  .content{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 @include media('desktop') {
   .site-footer [class^=col-] {
     margin-bottom: 30px

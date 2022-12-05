@@ -3,6 +3,8 @@ import { UUID } from "~/utils";
 
 export const state = () => ({
   counters: [],
+  sortBy: "",
+  order: "",
 });
 
 export const mutations = {
@@ -24,6 +26,20 @@ export const mutations = {
       } else return counter;
     });
   },
+
+  setOrderCounters(state, counters) {
+    state.counters = [];
+    state.counters = counters;
+  },
+
+  setSortBy(state, value) {
+    state.sortBy = value;
+  },
+
+  setOrder(state, order) {
+    state.order = order;
+    state.counters = [...state.counters];
+  },
 };
 
 export const getters = {
@@ -36,11 +52,19 @@ export const getters = {
   allowAdd(state) {
     return !(state.counters.length < QUANTITY_MAX_COUNTERS);
   },
+  hasSorterSelect(state) {
+    return !!state.sortBy;
+  },
+  sortBy(state) {
+    return state.sortBy;
+  },
+  orderSort(state) {
+    return state.order;
+  },
 };
 
 export const actions = {
   createCounter({ commit }, payload) {
-    console.log("payload", payload);
     const id = UUID();
     const counter = {
       id,
@@ -48,5 +72,26 @@ export const actions = {
       value: Number(payload.value),
     };
     commit("addCounter", counter);
+  },
+
+  async orderCounters({ commit, state }) {
+    let data = [...state.counters];
+
+    if (!state.order && !state.sortBy) return null;
+
+    let order = 0;
+    order = state.order.includes("asc") ? -1 : 1;
+
+    data.sort((a, b) => {
+      if (a[state.sortBy] < b[state.sortBy]) {
+        return order;
+      }
+      if (a[state.sortBy] > b[state.sortBy]) {
+        return order;
+      }
+      return 0;
+    });
+
+    commit("setOrderCounters", data);
   },
 };

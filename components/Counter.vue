@@ -1,10 +1,8 @@
 <template>
   <div id="contador">
     <div class="wrapper">
-
       <div class="content">
         <BaseLabel :text="counter.name"/>
-        {{ allowDecrement }} {{ allowIncrement }}
       </div>
 
       <div>
@@ -42,11 +40,10 @@
 
 <script>
 import {mapGetters, mapMutations} from "vuex";
-import {setLocalStorage} from "~/utils";
 
 
 export default {
-  name: "Contador",
+  name: "Counter",
   components: {
     BaseLabel: () => import('~/components/shared/BaseLabel'),
     BaseTextInput: () => import('~/components/shared/BaseTextInput'),
@@ -55,7 +52,7 @@ export default {
   props: {
     counter: {
       type: Object,
-      required: false,
+      required: true,
     },
   },
   computed: {

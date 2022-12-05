@@ -95,6 +95,16 @@ export default {
   }
 }
 
+.cancel {
+  background-color: var(--color-conditional-down);
+  color: var(--color-light);
+
+  &:hover {
+    background-color: var(--color-conditional);
+    box-shadow: 0 1px 5px var(--color-gray);
+  }
+}
+
 .success-light {
   background-color: var(--color-light);
   color: var(--color-primary);

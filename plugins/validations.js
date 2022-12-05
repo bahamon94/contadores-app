@@ -10,7 +10,8 @@ const validations = {
   methods: {
     $validRangeContador(value) {
       return (
-        value < QUANTITY_MAX_VALUE_COUNTER && value > QUANTITY_MIN_VALUE_COUNTER
+        value <= QUANTITY_MAX_VALUE_COUNTER &&
+        value >= QUANTITY_MIN_VALUE_COUNTER
       );
     },
     $validEmptyOrGreaterThan(value) {

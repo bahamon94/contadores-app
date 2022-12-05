@@ -1,14 +1,6 @@
 <template>
   <div class="modal-overlay">
     <div class="modal">
-      <div class="close">
-        <base-button
-          class="close-img"
-          variant="transparent"
-          button-icon="circle-xmark"
-          icon-size="2"
-          @clicked="closeModal"/>
-      </div>
       <slot/>
     </div>
   </div>
@@ -46,8 +38,8 @@ export default {
 .modal {
   text-align: center;
   background-color: white;
-  height: 500px;
-  width: 60vw;
+  height: 40vh;
+  width: 40vw;
   margin-top: 10%;
   padding: 6px 0;
   border-radius: 20px;

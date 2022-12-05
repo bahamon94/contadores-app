@@ -1,15 +1,16 @@
 <template>
   <section>
-  <Counter
-    v-for="counter in allCounters"
-    :key="counter.id"
-    :counter="counter"
-  />
+    <lazy-orders v-if="hasSelectSort"/>
+    <Counter
+      v-for="counter in allCounters"
+      :key="counter.id"
+      :counter="counter"
+    />
 
     <BaseButton
       variant="primary"
       text="Create counter"
-      v-if="allCounters"
+      v-if="!hasCounter"
       class="add-counter"
       @clicked="openCreateCounter"
     />
@@ -18,20 +19,35 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 import modalServices from "~/services/Modal.services";
 import RegisterCounter from "~/components/RegisterCounter";
 
 export default {
   name: 'IndexPage',
   components: {
-    BaseButton: ()=> import('@/components/shared/BaseButton')
+    BaseButton: () => import('@/components/shared/BaseButton'),
   },
 
-  computed: mapGetters({ allCounters: 'counter/getCounters' }),
+  computed: {
+    ...mapGetters({
+      hasCounter: 'counter/countCounters',
+      hasSelectSort: "counter/hasSorterSelect",
+      allCounters: 'counter/getCounters',
+      order: "counter/orderSort"
+    }),
+  },
+
   methods: {
-    openCreateCounter(){
+    openCreateCounter() {
       modalServices.Open(RegisterCounter)
+    },
+
+    ...mapActions("counter", ["orderCounters"])
+  },
+  watch: {
+    order() {
+      this.orderCounters()
     }
   }
 }

@@ -14,7 +14,10 @@
       </div>
 
     </fieldset>
-    <BaseButton variant="success" @clicked="setCounter" text="Create"></BaseButton>
+    <div class="actions">
+      <BaseButton variant="success" @clicked="setCounter" text="Create"></BaseButton>
+      <BaseButton variant="cancel" @clicked="cancelCreate" text="Cancelar"></BaseButton>
+    </div>
   </div>
 
 </template>
@@ -47,6 +50,10 @@ export default {
         modalServices.close()
       } else
         modalServices.Open(BaseAlert)
+    },
+
+    cancelCreate() {
+      modalServices.close()
     },
 
     ...mapActions({createCounter: 'counter/createCounter'}),
