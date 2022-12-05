@@ -1,5 +1,5 @@
 <template>
-  <font-awesome-icon :icon="['fas', icon ]" :class="`fa-${size}x`"/>
+  <font-awesome-icon v-if="!!icon" :icon="icon" :class="`fa-${size}x`"/>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
     icon: {
       type: String,
       required: false,
-      default: 'js'
+      default: ''
     },
     size: {
       type: String,
