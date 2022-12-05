@@ -1,7 +1,7 @@
 <template>
   <label>
     <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-    <div class="alert info">
+    <div class="alert error">
       <span class="alertClose">X</span>
       <span class="alertText">Bla Bla Bla<br />Bla Bla<br />Bla
 		<br class="clear"/></span>
@@ -19,17 +19,14 @@ export default {
 <style scoped>
 .alert {
   position: relative;
-  top: 10;
-  left: 0;
-  width: auto;
-  height: auto;
+  right: 0;
   padding: 10px;
   margin: 10px;
-  line-height: 1.8;
   border-radius: 5px;
   cursor: hand;
   font-family: sans-serif;
   font-weight: 400;
+  width: 25%;
 }
 
 .alertCheckbox {

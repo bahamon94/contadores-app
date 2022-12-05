@@ -46,27 +46,25 @@ export default {
 
   .total-counters {
     text-align: right;
+    display: inline-grid;
+    justify-items: center;
 
     .legend {
-      font-size: 2rem;
-
-      &::after {
-        content: ' #';
-      }
+      margin-bottom: .5rem;
+      font-size: 1.2rem;
     }
 
     span {
-      width: 100px;
-      height: 40px;
-      line-height: 40px;
+      color: var(--color-light);
+      width: 120px;
+      height: 30px;
+      line-height: 30px;
       margin-left: 6px;
       margin-right: 0;
-      border-radius: 10%;
-      background-color: var(--color-light);
+      border-radius: 5%;
+      background-color: var(--color-conditional);
       font-weight: bolder;
       font-size: 1.5rem;
-
-
     }
   }
 }
@@ -74,7 +72,7 @@ export default {
 .app-name-text {
   color: var(--color-light);
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-left: 1rem
 }
 

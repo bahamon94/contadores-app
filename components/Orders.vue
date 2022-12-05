@@ -12,12 +12,21 @@
           @clicked="setOrder('asc')"
         />
       </li>
+
       <li>
         <BaseButton
           class="list-filter"
           :variant="isDescendent"
           text="Desc"
           @clicked="setOrder('desc')"
+        />
+      </li>
+
+      <li>
+        <BaseButton
+          variant="cancel"
+          button-icon="xmark"
+          @clicked="clearSortOrder"
         />
       </li>
     </ol>
@@ -53,7 +62,7 @@ export default {
       this.setWay(order)
     },
 
-    ...mapMutations({ setWay: "counter/setOrder" })
+    ...mapMutations({ setWay: "counter/setOrder", clearSortOrder: "counter/clearSortOrder" })
   }
 }
 </script>

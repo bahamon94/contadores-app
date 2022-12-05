@@ -40,6 +40,10 @@ export const mutations = {
     state.order = order;
     state.counters = [...state.counters];
   },
+  clearSortOrder(state) {
+    state.sortBy = "";
+    state.order = "";
+  },
 };
 
 export const getters = {
@@ -76,21 +80,16 @@ export const actions = {
 
   async orderCounters({ commit, state }) {
     let data = [...state.counters];
+    const by = state.sortBy;
 
     if (!state.order && !state.sortBy) return null;
 
     let order = 0;
     order = state.order.includes("asc") ? -1 : 1;
 
-    data.sort((a, b) => {
-      if (a[state.sortBy] < b[state.sortBy]) {
-        return order;
-      }
-      if (a[state.sortBy] > b[state.sortBy]) {
-        return order;
-      }
-      return 0;
-    });
+    if (state.order.includes("asc"))
+      data.sort((a, b) => (a[by] !== b[by] ? (a[by] < b[by] ? -1 : 1) : 0));
+    else data.sort((a, b) => (a[by] !== b[by] ? (a[by] < b[by] ? 1 : -1) : 0));
 
     commit("setOrderCounters", data);
   },
